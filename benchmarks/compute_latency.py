@@ -1,3 +1,8 @@
+import os
+import sys
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 import torch
 import time
 import numpy as np
@@ -79,6 +84,7 @@ def benchmark_inference_batch_real_images(
     return mean_ms, std_ms, throughput
 if __name__ == "__main__":
   IMAGE_DIR = "/path/to/your/images"
+  BATCH_SIZE = 32
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
   print(f"Using device: {device}")
   model = DualStreamModel().to(device)
