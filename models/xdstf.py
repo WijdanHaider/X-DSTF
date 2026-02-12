@@ -1,3 +1,10 @@
+
+import torch
+import torch.nn as nn
+from torch.nn import TransformerEncoder, TransformerEncoderLayer
+from torchvision.models import convnext_base, ConvNeXt_Base_Weights
+from torchvision.models import efficientnet_v2_s, EfficientNet_V2_S_Weights
+
 class DualStreamModel(nn.Module):
     def __init__(self, num_classes=1, d_model=512, nhead=8, num_layers=2):
         super(DualStreamModel, self).__init__()
