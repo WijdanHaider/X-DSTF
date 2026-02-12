@@ -11,3 +11,12 @@ You can install the required packages by running the command:
 ```bash
 pip install -r requirements.txt
 ```
+## Efficiency Benchmarking
+To benchmark model complexity and runtime, you can independently choose to compute FLOPs, parameter count, or inference latency, depending on their evaluation needs. Each benchmarking component is modularized into a dedicated script to ensure clarity, reproducibility, and flexibility.
+
+```bash
+benchmarks/
+├── flops.py
+├── params.py
+├── latency.py 
+```
