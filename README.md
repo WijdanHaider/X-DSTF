@@ -16,7 +16,7 @@ To benchmark model complexity and runtime, you can independently choose to compu
 
 ```bash
 benchmarks/
-├── flops.py
-├── params.py
-├── latency.py 
+├── compute_flops.py
+├── compute_params.py 
+├── compute_latency.py
 ```
