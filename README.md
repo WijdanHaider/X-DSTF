@@ -4,7 +4,9 @@ In this paper, we propose the X-DSTF framework, a dual-stream transformer-based 
 <div align="center">
   <img src='./figures/pipeline.png' align="center" width=800>
 </div>
+
 ## Environment Setup
+
 You can install the required packages by running the command:
 ```bash
 pip install -r requirements.txt
