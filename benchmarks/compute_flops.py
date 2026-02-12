@@ -1,8 +1,17 @@
+import os
+import sys
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 import torch
 from thop import profile
 from PIL import Image
 from models.xdstf import DualStreamModel
 from transforms.dft import get_transforms
+
+
+
+
 
 def compute_flops(model, image_path, device):
     model.eval()
@@ -22,6 +31,6 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = DualStreamModel().to(device)
 
-    flops = compute_flops(model, "assets/sample.jpg", device)
+    flops = compute_flops(model, "assets/pipeline.png", device)
 
     print(f"FLOPs: {flops:.2f} GFLOPs")
