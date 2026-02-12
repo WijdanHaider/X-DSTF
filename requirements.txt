@@ -1,0 +1,6 @@
+numpy==1.24.3
+Pillow==12.1.1
+thop
+torch==2.8.0
+torchinfo==1.8.0
+torchvision
