@@ -48,12 +48,7 @@ X-DSTF/
 # 1. Clone the repository
 git clone https://github.com/WijdanHaider/X-DSTF.git
 cd X-DSTF
-
-# 2. Create and activate a conda environment
-conda create -n xdstf python=3.9
-conda activate xdstf
-
-# 3. Install dependencies
+# 2. Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -90,44 +85,20 @@ All training hyperparameters match the experimental protocol reported in the pap
 | Early stopping   | patience=5             |
 | Max epochs       | 25                     |
 
-**Replicate paper results (mild augmentation — best performing):**
-
-```bash
-python train.py \
-  --data_dir data/ \
-  --batch_size 16 \
-  --lr 1e-4 \
-  --weight_decay 1e-4 \
-  --epochs 25 \
-  --augmentation mild \
-  --output_dir checkpoints/
-```
-
-**Available augmentation strategies** (see Table 15 for per-strategy results):
-
 ```bash
 # Baseline — no augmentation
 python train.py --data_dir data/ --batch_size 16 --lr 1e-4 --augmentation none
-
-# Light — rotation ±15°, horizontal/vertical flip
-python train.py --data_dir data/ --batch_size 16 --lr 1e-4 --augmentation light
-
-# Mild — JPEG Q=50, Gaussian blur σ∈[0.1,2], brightness ±30%  ← Best
-python train.py --data_dir data/ --batch_size 16 --lr 1e-4 --augmentation mild
-
-# Extensive — rotation ±45°, flip, color jitter, Gaussian blur σ∈[0.1,5]
-python train.py --data_dir data/ --batch_size 16 --lr 1e-4 --augmentation extensive
 ```
+**Available augmentation strategies:** none, light, mild, extensive
 
 **Resume from checkpoint:**
-
 ```bash
 python train.py \
   --data_dir data/ \
   --batch_size 16 \
   --lr 1e-4 \
-  --augmentation mild \
-  --resume checkpoints/latest_checkpoint.pth.tar
+  --augmentation none \
+  --resume <path to checkpoint>
 ```
 
 Checkpoints are saved to `checkpoints/best_model.pth.tar` (best validation loss) and `checkpoints/latest_checkpoint.pth.tar` (latest epoch).
@@ -140,17 +111,17 @@ Checkpoints are saved to `checkpoints/best_model.pth.tar` (best validation loss)
 
 ```bash
 python infer.py \
-  --checkpoint checkpoints/best_model.pth.tar \
-  --input assets/sample.jpg
+  --checkpoint <path to checkpoint>\
+  --input <path to input image>
 ```
 
 **Batch inference on a folder:**
 
 ```bash
 python infer.py \
-  --checkpoint checkpoints/best_model.pth.tar \
-  --input data/test/ \
-  --output results/predictions.csv \
+  --checkpoint <path to checkpoint>\
+  --input <path to input folder> \
+  --output <path to save results> \
   --batch_size 16
 ```
 
@@ -158,8 +129,8 @@ python infer.py \
 
 ```bash
 python infer.py \
-  --checkpoint checkpoints/best_model.pth.tar \
-  --input data/test/ \
+  --checkpoint <path to checkpoint> \
+  --input <path to input folder> \
   --threshold 0.6
 ```
 
@@ -190,9 +161,3 @@ python benchmarks/compute_latency.py
 | Inference  | 1× NVIDIA L4 (22.16 GB VRAM), Intel Xeon (6-core, 2.2 GHz), 53 GB RAM |
 
 ---
-
-## Reproducibility
-
-A detailed Reproducibility Appendix specifying all hyperparameters, dataset splits, data augmentation strategies, and experimental settings is included in the supplementary material of the paper.
-
-For any reproducibility questions, please open a GitHub Issue.
