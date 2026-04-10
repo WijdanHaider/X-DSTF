@@ -85,8 +85,8 @@ All training hyperparameters match the experimental protocol reported in the pap
 | Early stopping   | patience=5             |
 | Max epochs       | 25                     |
 
+**Command to start training the model:**
 ```bash
-# Baseline — no augmentation
 python train.py --data_dir data/ --batch_size 16 --lr 1e-4 --augmentation none
 ```
 **Available augmentation strategies:** none, light, mild, extensive
