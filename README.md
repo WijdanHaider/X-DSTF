@@ -7,7 +7,7 @@ We propose the **X-DSTF** framework, a dual-stream transformer-based architectur
 </div>
 
 <div align="center">
-  <img src='./figures/code_structure.png' align="center" width=700>
+  <img src='./figures/code_structure.jpg' align="center" width=700>
   <p><em>Supplementary Figure: Repository code structure and data flow.</em></p>
 </div>
 
